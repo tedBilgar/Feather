@@ -3,10 +3,11 @@ package mainSystem.service.userService;
 import mainSystem.dao.userRepository.UserRepository;
 import mainSystem.model.userInitModels.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
 
+
+@Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
@@ -14,6 +15,10 @@ public class UserServiceImpl implements UserService{
 
     public User getUserById(int i) {
         return userRepository.getUserById(i);
+    }
+
+    public void addUser(User user) {
+        userRepository.addUser(user);
     }
 
 }

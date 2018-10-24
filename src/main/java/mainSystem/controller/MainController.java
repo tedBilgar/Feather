@@ -23,4 +23,11 @@ public class MainController {
     public User user(){
         return userService.getUserById(1);
     }
+
+    @GetMapping("/addUser")
+    public String add(){
+        User user = new User(2,"Den","123123","papa134");
+        userService.addUser(user);
+        return "main";
+    }
 }

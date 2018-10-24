@@ -74,6 +74,14 @@
             <version>5.3.0.Final</version>
         </dependency>
 
+        <!-- Для data source-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
+
         <!-- Поддрежка логгирования-->
         <dependency>
             <groupId>log4j</groupId>
