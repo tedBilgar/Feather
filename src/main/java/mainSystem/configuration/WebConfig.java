@@ -1,31 +1,17 @@
 package mainSystem.configuration;
 
-import mainSystem.model.userInitModels.Group;
-import mainSystem.model.userInitModels.User;
-import org.springframework.context.MessageSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.validation.Validator;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
-import org.thymeleaf.spring5.SpringTemplateEngine;
-import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
-import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-import java.util.Properties;
+
 
 @Configuration
 @ComponentScan("mainSystem")
@@ -42,86 +28,6 @@ public class WebConfig implements WebMvcConfigurer {
         return resolver;
     }
 
-    @Bean
-    public ThymeleafViewResolver thymeleafViewResolver() {
-        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(templateEngine());
-        viewResolver.setViewNames(new String[]{"angular/*"});
-        return viewResolver;
-    }
-    @Bean
-    public SpringTemplateEngine templateEngine() {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver());
-        templateEngine.setDialect(new SpringSecurityDialect());
-        return templateEngine;
-    }
-    @Bean
-    public SpringResourceTemplateResolver templateResolver() {
-        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setPrefix("/WEB-INF/views/");
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML5");
-        return templateResolver;
-    }
 
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**")
-                .addResourceLocations("classpath:/static/");
-    }
-
-/*    @Bean
-    public DataSource dataSource(){
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/products?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-        dataSource.setUsername("root");
-        dataSource.setPassword("123456");
-        return dataSource;
-    }*/
-
-    @Bean
-    public DataSource dataSource() throws NamingException {
-        JndiDataSourceLookup dataSource = new JndiDataSourceLookup();
-        dataSource.setResourceRef(true);
-        return  dataSource.getDataSource("jdbc/mysql");
-    }
-
-    @Bean
-    public LocalSessionFactoryBean sessionFactory() throws NamingException {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource( dataSource());
-        Properties props = new Properties();
-        props.setProperty("hibernate.dialect","org.hibernate.dialect.MySQLDialect");
-        props.setProperty("show_sql","true");
-
-        sessionFactory.setHibernateProperties(props);
-        sessionFactory.setAnnotatedClasses(User.class, Group.class);
-
-        return sessionFactory;
-    }
-
-    @Bean
-    public HibernateTransactionManager getTransactionManager() throws NamingException {
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory().getObject());
-        return transactionManager;
-    }
-
-
-
-    @Bean
-    public MessageSource messageSource(){
-        ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-        source.setBasename("messages");
-        return source;
-    }
-
-
-    public Validator getValidator() {
-        LocalValidatorFactoryBean validatorFactoryBean = new LocalValidatorFactoryBean();
-        validatorFactoryBean.setValidationMessageSource(messageSource());
-        return validatorFactoryBean;
-    }
 
 }
