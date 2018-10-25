@@ -1,6 +1,5 @@
 package mainSystem.model.userInitModels;
 
-
 import javax.persistence.*;
 
 @Entity

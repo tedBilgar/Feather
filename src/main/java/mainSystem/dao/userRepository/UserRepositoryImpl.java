@@ -20,12 +20,26 @@ public class UserRepositoryImpl implements UserRepository {
         sessionFactory.getCurrentSession().save(users);
     }
 
-    public Users getUserById(int i) {
+    @Transactional
+    public Users getUserById(int id) {
         logger.info("Getting Users By ID");
-        /*for (Users user:
-                userList) {
-            if (user.getId() == i) return user;
-        }*/
+    }
+
+    @Transactional
+    public Users getUserByEmail(String email) {
+        String query = "FROM useres u select u where ";
         return null;
     }
+
+    @Transactional
+    public void setUser(Users user) {
+        sessionFactory.getCurrentSession().update(user);
+    }
+
+    @Transactional
+    public void deleteUser(Users users) {
+
+    }
+
+
 }

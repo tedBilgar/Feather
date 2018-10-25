@@ -14,8 +14,6 @@ public class Task {
     private String userInfo;
 
     //TODO
-
-
     public int getId() {
         return id;
     }
