@@ -1,13 +1,23 @@
 package mainSystem.model.userInitModels;
 
-public class User {
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users",schema = "feather")
+public class Users {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private int id;
+    @Column(name = "username")
     private String username;
+    @Column(name= "password")
     private String password;
+    @Column(name = "email")
     private String email;
 
-    public User(int id, String username, String password, String email) {
-        this.id = id;
+    public Users(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;

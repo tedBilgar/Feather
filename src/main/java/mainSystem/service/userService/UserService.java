@@ -1,8 +1,8 @@
 package mainSystem.service.userService;
 
-import mainSystem.model.userInitModels.User;
+import mainSystem.model.userInitModels.Users;
 
 public interface UserService {
-    User getUserById(int i);
-    void addUser(User user);
+    Users getUserById(int i);
+    void addUser(Users users);
 }

@@ -1,8 +1,8 @@
 package mainSystem.dao.userRepository;
 
-import mainSystem.model.userInitModels.User;
+import mainSystem.model.userInitModels.Users;
 
 public interface UserRepository {
-    User getUserById(int i);
-    void addUser(User user);
+    Users getUserById(int i);
+    void addUser(Users users);
 }

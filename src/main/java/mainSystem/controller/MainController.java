@@ -1,11 +1,10 @@
 package mainSystem.controller;
 
-import mainSystem.model.userInitModels.User;
+import mainSystem.model.userInitModels.Users;
 import mainSystem.service.userService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -20,14 +19,14 @@ public class MainController {
 
     @GetMapping("/user")
     @ResponseBody
-    public User user(){
+    public Users user(){
         return userService.getUserById(1);
     }
 
     @GetMapping("/addUser")
     public String add(){
-        User user = new User(2,"Den","123123","papa134");
-        userService.addUser(user);
+        Users users = new Users("Denisio","3ddas","asdx");
+        userService.addUser(users);
         return "main";
     }
 }
