@@ -2,6 +2,7 @@ package mainSystem.dao.userRepository;
 
 import mainSystem.model.userInitModels.Users;
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,12 +18,18 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Transactional
     public void addUser(Users users){
-        sessionFactory.getCurrentSession().save(users);
+        getCurrentSessionFactory().save(users);
     }
 
     @Transactional
     public Users getUserById(int id) {
         logger.info("Getting Users By ID");
+        return (Users) getCurrentSessionFactory().createQuery("from users u where u.id =: id ").setParameter("id",id).getSingleResult();
+    }
+
+    @Transactional
+    public String getUserNameById(int id){
+        return (String) getCurrentSessionFactory().createQuery("from users u where u.id =: id").setParameter("id",id).getSingleResult();
     }
 
     @Transactional
@@ -41,5 +48,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     }
 
+    private Session getCurrentSessionFactory(){
+        return sessionFactory.getCurrentSession();
+    }
 
 }
