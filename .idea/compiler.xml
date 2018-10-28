@@ -9,5 +9,8 @@
         <module name="Feather" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Feather" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

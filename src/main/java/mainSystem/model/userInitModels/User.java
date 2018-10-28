@@ -1,10 +1,12 @@
 package mainSystem.model.userInitModels;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "users",schema = "feather")
-public class Users {
+@Table(name = "users",schema = "main")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "serial")
@@ -16,10 +18,21 @@ public class Users {
     @Column(name = "email")
     private String email;
 
-    public Users(String username, String password, String email) {
+    @ManyToMany(mappedBy = "users")
+    private Set<Group> groups = new HashSet<Group>();
+
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public Set<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<Group> groups) {
+        this.groups = groups;
     }
 
     public int getId() {

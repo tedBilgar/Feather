@@ -1,7 +1,8 @@
 package mainSystem.configuration;
 
 
-import mainSystem.model.userInitModels.Users;
+import mainSystem.model.userInitModels.Group;
+import mainSystem.model.userInitModels.User;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -38,7 +39,7 @@ public class WebConfig implements WebMvcConfigurer {
     public DataSource dataSource(){
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/postgres");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/Feather");
         dataSource.setUsername("postgres");
         dataSource.setPassword("6u5a8oz1");
         return dataSource;
@@ -52,7 +53,7 @@ public class WebConfig implements WebMvcConfigurer {
         properties.setProperty("hibernate.dialect","org.hibernate.dialect.PostgreSQLDialect");
 
         localSessionFactoryBean.setHibernateProperties(properties);
-        localSessionFactoryBean.setAnnotatedClasses(Users.class);
+        localSessionFactoryBean.setAnnotatedClasses(User.class, Group.class);
         return localSessionFactoryBean;
     }
 
