@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
-    //private List<User> userList = Arrays.asList(new User(1,"Denis","123456","papa149@mail.ru"));
     private static final Logger logger = Logger.getLogger(UserRepository.class);
 
     @Autowired
@@ -18,6 +17,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Transactional
     public void addUser(User user){
+        logger.info("Adding user ID: " + user.getId());
         getCurrentSessionFactory().save(user);
     }
 
@@ -29,12 +29,14 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Transactional
     public void setUser(User user) {
-        sessionFactory.getCurrentSession().update(user);
+        logger.info("Updating user ID " + user.getId());
+        getCurrentSessionFactory().update(user);
     }
 
     @Transactional
-    public void deleteUser(User user) {
-
+    public void deleteUser(int userId) {
+        logger.info("Deleting user ID: " + userId);
+        getCurrentSessionFactory().delete(userId);
     }
 
     private Session getCurrentSessionFactory(){

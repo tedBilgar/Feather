@@ -6,5 +6,5 @@ public interface UserRepository {
     User getUserById(int id);
     void addUser(User user);
     void setUser(User user);
-    void deleteUser(User user);
+    void deleteUser(int userId);
 }
