@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="Feather@localhost">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.4">
+    <root id="1"/>
+    <database id="2" parent="1" name="Feather">
+      <ObjectId>16393</ObjectId>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </database>
+    <database id="3" parent="1" name="postgres">
+      <ObjectId>13012</ObjectId>
+    </database>
+    <schema id="4" parent="2" name="public">
+      <ObjectId>2200</ObjectId>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="5" parent="2" name="pg_catalog">
+      <ObjectId>11</ObjectId>
+    </schema>
+    <schema id="6" parent="2" name="pg_toast">
+      <ObjectId>99</ObjectId>
+    </schema>
+    <schema id="7" parent="2" name="pg_temp_1">
+      <ObjectId>11804</ObjectId>
+    </schema>
+    <schema id="8" parent="2" name="pg_toast_temp_1">
+      <ObjectId>11805</ObjectId>
+    </schema>
+    <schema id="9" parent="2" name="information_schema">
+      <ObjectId>12716</ObjectId>
+    </schema>
+    <schema id="10" parent="2" name="main">
+      <ObjectId>24577</ObjectId>
+      <Visible>1</Visible>
+    </schema>
+    <sequence id="11" parent="10" name="board_id_seq">
+      <ObjectId>24646</ObjectId>
+      <StateNumber>594</StateNumber>
+    </sequence>
+    <sequence id="12" parent="10" name="group_id_seq">
+      <ObjectId>24623</ObjectId>
+      <StateNumber>592</StateNumber>
+    </sequence>
+    <sequence id="13" parent="10" name="users_id_seq">
+      <ObjectId>24611</ObjectId>
+      <StateNumber>591</StateNumber>
+    </sequence>
+    <table id="14" parent="10" name="board">
+      <ObjectId>24648</ObjectId>
+      <StateNumber>594</StateNumber>
+    </table>
+    <table id="15" parent="10" name="group">
+      <ObjectId>24625</ObjectId>
+      <StateNumber>593</StateNumber>
+    </table>
+    <table id="16" parent="10" name="users">
+      <ObjectId>24613</ObjectId>
+      <StateNumber>593</StateNumber>
+    </table>
+  </database-model>
+</dataSource>

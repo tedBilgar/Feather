@@ -2,6 +2,8 @@ package mainSystem.model.userInitModels;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,20 +20,19 @@ public class Group {
     @Column(name = "type")
     private String type;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "groupanduser",
-            joinColumns = {@JoinColumn(name = "groupId")},
-            inverseJoinColumns = {@JoinColumn(name = "userId")}
-    )
-    Set<User> users = new HashSet<User>();
+    @ManyToMany(mappedBy = "groups")
+    private List<User> userSet = new LinkedList<User>();
 
-    public Set<User> getUsers() {
-        return users;
+    public Group() {
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+
+    public List<User> getUserSet() {
+        return userSet;
+    }
+
+    public void setUserSet(List<User> userSet) {
+        this.userSet = userSet;
     }
 
     public int getId() {
