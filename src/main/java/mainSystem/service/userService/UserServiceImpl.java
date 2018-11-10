@@ -3,6 +3,7 @@ package mainSystem.service.userService;
 import mainSystem.dao.userRepository.UserRepository;
 import mainSystem.model.userInitModels.Group;
 import mainSystem.model.userInitModels.User;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,9 +24,9 @@ public class UserServiceImpl implements UserService{
         userRepository.addUser(user);
     }
 
-    @Transactional
     public List<Group> getGroupsOfUser(int userId) {
         User user = userRepository.getUserById(userId);
+        Hibernate.initialize(user.getGroups());
         return user.getGroups();
     }
 

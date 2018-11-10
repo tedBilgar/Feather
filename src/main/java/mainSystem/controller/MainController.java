@@ -52,7 +52,7 @@ public class MainController {
     @GetMapping("/add")
     @ResponseBody
     public String gets(){
-
+        userService.addUser(new User("news","pass","email123"));
         return "main";
     }
 }

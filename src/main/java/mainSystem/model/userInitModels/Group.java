@@ -1,5 +1,8 @@
 package mainSystem.model.userInitModels;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -20,7 +23,11 @@ public class Group {
     @Column(name = "type")
     private String type;
 
+    @Column(name = "organizationid")
+    private String organizationid;
+
     @ManyToMany(mappedBy = "groups")
+    @JsonIgnore
     private List<User> userSet = new LinkedList<User>();
 
     public Group() {
@@ -57,5 +64,13 @@ public class Group {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getOrganizationid() {
+        return organizationid;
+    }
+
+    public void setOrganizationid(String organizationid) {
+        this.organizationid = organizationid;
     }
 }

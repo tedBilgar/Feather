@@ -2,6 +2,7 @@ package mainSystem.dao.userRepository;
 
 import mainSystem.model.userInitModels.User;
 import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,9 @@ public class UserRepositoryImpl implements UserRepository {
     @Transactional
     public User getUserById(int id) {
         logger.info("Getting User By ID");
-        return (User) getCurrentSessionFactory().createQuery("from User u where u.id =: id ").setParameter("id",id).getSingleResult();
+        User user =  (User) getCurrentSessionFactory().createQuery("from User u where u.id =: id ").setParameter("id",id).getSingleResult();
+        Hibernate.initialize(user.getGroups());
+        return user;
     }
 
     @Transactional
