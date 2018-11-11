@@ -6,10 +6,11 @@ import mainSystem.model.userInitModels.User;
 import mainSystem.service.userService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,10 +50,40 @@ public class MainController {
         return groups;
     }
 
+    @GetMapping("/get")
+    @ResponseBody
+    public User getUser(){
+        return userService.getUserByUsername("Denis");
+    }
+
     @GetMapping("/add")
     @ResponseBody
     public String gets(){
         userService.addUser(new User("news","pass","email123"));
         return "main";
+    }
+
+    //LOGIN
+    @GetMapping("/login")
+    public String login(Model model){
+        model.addAttribute("user",new User());
+        return "login";
+    }
+
+    //REG
+    @GetMapping("/reg")
+    public String userReg(Model model){
+        model.addAttribute("user",new User());
+        return "registration";
+    }
+
+    @RequestMapping(value = "/addUser",method = RequestMethod.POST)
+    public String addUser(@ModelAttribute("user")User user, BindingResult bindingResult,Model model){
+        if (bindingResult.hasErrors()){
+            return "registration";
+        }
+        System.out.println("I~M HERE");
+        userService.addUser(user);
+        return "redirect:/home";
     }
 }

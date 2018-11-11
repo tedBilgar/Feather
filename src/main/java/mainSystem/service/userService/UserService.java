@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 public interface UserService {
-    User getUserById(int i);
+    User getUserById(int id);
+    User getUserByUsername(String username);
     void addUser(User user);
     List<Group> getGroupsOfUser(int userId);
     void updateUser(User user);

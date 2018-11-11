@@ -1,13 +1,10 @@
 package mainSystem.model.userInitModels;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "users",schema = "main")
@@ -33,6 +30,11 @@ public class User {
     private List<Group> groups = new LinkedList<Group>();
 
     public User() {
+    }
+
+    public User(String username,String password){
+        this.username = username;
+        this.password = password;
     }
 
     public User(String username, String password, String email) {

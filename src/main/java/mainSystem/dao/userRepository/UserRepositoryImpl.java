@@ -25,7 +25,15 @@ public class UserRepositoryImpl implements UserRepository {
     @Transactional
     public User getUserById(int id) {
         logger.info("Getting User By ID");
-        User user =  (User) getCurrentSessionFactory().createQuery("from User u where u.id =: id ").setParameter("id",id).getSingleResult();
+        User user =  (User) getCurrentSessionFactory().createQuery("from User u where u.id =: id ").setParameter("id",id).uniqueResult();
+        Hibernate.initialize(user.getGroups());
+        return user;
+    }
+
+    @Transactional
+    public User getUserByUsername(String username) {
+        logger.info("Getting User By Username");
+        User user = (User) getCurrentSessionFactory().createQuery("from User u where u.username =: username").setParameter("username",username).uniqueResult();
         Hibernate.initialize(user.getGroups());
         return user;
     }
