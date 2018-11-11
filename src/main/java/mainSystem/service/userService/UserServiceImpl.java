@@ -3,6 +3,7 @@ package mainSystem.service.userService;
 import mainSystem.dao.userRepository.UserRepository;
 import mainSystem.model.userInitModels.Group;
 import mainSystem.model.userInitModels.User;
+import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,12 +20,25 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    private static final Logger logger = Logger.getLogger(UserService.class);
+
+
     public User getUserById(int id) {
-        return userRepository.getUserById(id);
+        User user = userRepository.getUserById(id);
+        if (user == null) {
+            logger.error("No Found User with ID: " + id);
+            return null;
+        }
+        return user;
     }
 
     public User getUserByUsername(String username) {
-        return userRepository.getUserByUsername(username);
+        User user = userRepository.getUserByUsername(username);
+        if (user == null) {
+            logger.error("No Found User with username: " + username);
+            return null;
+        }
+        return user;
     }
 
     public void addUser(User user) {

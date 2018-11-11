@@ -2,11 +2,10 @@ package mainSystem.model.taskUnitModels;
 
 import javax.persistence.*;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Entity
-@Table(name = "task",schema = "main")
-public class Task {
+@Table(name = "task_list",schema = "main")
+public class TaskList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "serial")
@@ -15,17 +14,14 @@ public class Task {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "id_list")
-    private int id_list;
+    @Column(name = "id_table")
+    private int id_table;
 
     @Column(name = "assignedgroupid")
     private int assignedgroupid;
 
     @Column(name = "assigneduserid")
     private int assigneduserid;
-
-    @Column(name = "isdone")
-    private boolean isDone;
 
     public int getId() {
         return id;
@@ -43,12 +39,12 @@ public class Task {
         this.name = name;
     }
 
-    public int getId_list() {
-        return id_list;
+    public int getId_table() {
+        return id_table;
     }
 
-    public void setId_list(int id_list) {
-        this.id_list = id_list;
+    public void setId_table(int id_table) {
+        this.id_table = id_table;
     }
 
     public int getAssignedgroupid() {
@@ -66,23 +62,4 @@ public class Task {
     public void setAssigneduserid(int assigneduserid) {
         this.assigneduserid = assigneduserid;
     }
-
-    public boolean isDone() {
-        return isDone;
-    }
-
-    public void setDone(boolean done) {
-        isDone = done;
-    }
-
-    /*private String name;
-    private int priority;
-    private int effort;
-    private String[] dependencyList;
-    private boolean isDone;
-    private Date timeStamp;
-    private String label;
-    private String userInfo;
-*/
-
 }

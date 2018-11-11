@@ -26,6 +26,10 @@ public class UserRepositoryImpl implements UserRepository {
     public User getUserById(int id) {
         logger.info("Getting User By ID");
         User user =  (User) getCurrentSessionFactory().createQuery("from User u where u.id =: id ").setParameter("id",id).uniqueResult();
+        if (user == null) {
+            logger.error("No Found User with ID: " + id);
+            return null;
+        }
         Hibernate.initialize(user.getGroups());
         return user;
     }
@@ -34,6 +38,10 @@ public class UserRepositoryImpl implements UserRepository {
     public User getUserByUsername(String username) {
         logger.info("Getting User By Username");
         User user = (User) getCurrentSessionFactory().createQuery("from User u where u.username =: username").setParameter("username",username).uniqueResult();
+        if (user == null) {
+            logger.error("No Found User with username: " + username);
+            return null;
+        }
         Hibernate.initialize(user.getGroups());
         return user;
     }
@@ -47,6 +55,11 @@ public class UserRepositoryImpl implements UserRepository {
     @Transactional
     public void deleteUser(int userId) {
         logger.info("Deleting user ID: " + userId);
+        User user =  (User) getCurrentSessionFactory().createQuery("from User u where u.id =: id ").setParameter("id",userId).uniqueResult();
+        if (user == null) {
+            logger.error("No Found User with ID: " + userId);
+            return;
+        }
         getCurrentSessionFactory().delete(userId);
     }
 
