@@ -2,22 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="UTF-8"/>
 
     <title>User Info</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- Custom styles for this template -->
-    <link href="css/signin.css" rel="stylesheet">
-<!--
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
--->
 
 </head>
 
@@ -26,12 +13,13 @@
 <div sec:authorize="isAuthenticated()">
     <div>
         <p1>Hello,</p1>
-        <p1 th:text="${user.username}"></p1>
-        <p1 th:text="${user.email}"></p1>
-        <p1>{user.email}</p1>
+        <h1 th:text="${user.username}"></h1>
+        <h1 th:text="${user.email}"></h1>
     </div>
 
 </div>
+<span th:text="${user.username}"></span>
+<span th:text="${user.email}"></span>
 <table >
     <table border="1" cellpadding="5">
         <caption><h2>List of ALL products</h2></caption>
