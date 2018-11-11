@@ -63,27 +63,5 @@ public class MainController {
         return "main";
     }
 
-    //LOGIN
-    @GetMapping("/login")
-    public String login(Model model){
-        model.addAttribute("user",new User());
-        return "login";
-    }
 
-    //REG
-    @GetMapping("/reg")
-    public String userReg(Model model){
-        model.addAttribute("user",new User());
-        return "registration";
-    }
-
-    @RequestMapping(value = "/addUser",method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user")User user, BindingResult bindingResult,Model model){
-        if (bindingResult.hasErrors()){
-            return "registration";
-        }
-        System.out.println("I~M HERE");
-        userService.addUser(user);
-        return "redirect:/home";
-    }
 }
