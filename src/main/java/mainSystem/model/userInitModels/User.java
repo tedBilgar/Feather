@@ -29,7 +29,7 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "id_table")}
     )
     @JsonIgnore
-    private Set<Table> tables = new HashSet<Table>();
+    private Set<mainSystem.model.taskUnitModels.Table> tables = new HashSet<mainSystem.model.taskUnitModels.Table>();
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
@@ -94,11 +94,11 @@ public class User {
         this.email = email;
     }
 
-    public Set<Table> getTables() {
+    public Set<mainSystem.model.taskUnitModels.Table> getTables() {
         return tables;
     }
 
-    public void setTables(Set<Table> tables) {
+    public void setTables(Set<mainSystem.model.taskUnitModels.Table> tables) {
         this.tables = tables;
     }
 

@@ -5,8 +5,6 @@ import mainSystem.model.userInitModels.User;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,13 +19,13 @@ public class Table {
     private String name;
 
     @Column(columnDefinition = "typeid")
-    private int typeid;
+    private Integer typeid;
 
     @Column(columnDefinition = "scrumid")
-    private int scrumid;
+    private Integer scrumid;
 
     @Column(columnDefinition = "kanbanid")
-    private int kanbanid;
+    private Integer kanbanid;
 
     @ManyToMany(mappedBy = "tables")
     @JsonIgnore
@@ -50,27 +48,35 @@ public class Table {
         this.name = name;
     }
 
-    public int getTypeid() {
+    public Integer getTypeid() {
         return typeid;
     }
 
-    public void setTypeid(int typeid) {
+    public void setTypeid(Integer typeid) {
         this.typeid = typeid;
     }
 
-    public int getScrumid() {
+    public Integer getScrumid() {
         return scrumid;
     }
 
-    public void setScrumid(int scrumid) {
+    public void setScrumid(Integer scrumid) {
         this.scrumid = scrumid;
     }
 
-    public int getKanbanid() {
+    public Integer getKanbanid() {
         return kanbanid;
     }
 
-    public void setKanbanid(int kanbanid) {
+    public void setKanbanid(Integer kanbanid) {
         this.kanbanid = kanbanid;
+    }
+
+    public Set<User> getUserSet() {
+        return userSet;
+    }
+
+    public void setUserSet(Set<User> userSet) {
+        this.userSet = userSet;
     }
 }

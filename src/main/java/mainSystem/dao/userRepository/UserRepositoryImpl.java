@@ -31,6 +31,7 @@ public class UserRepositoryImpl implements UserRepository {
             return null;
         }
         Hibernate.initialize(user.getGroups());
+        Hibernate.initialize(user.getTables());
         return user;
     }
 

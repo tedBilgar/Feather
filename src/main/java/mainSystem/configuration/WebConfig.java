@@ -1,6 +1,9 @@
 package mainSystem.configuration;
 
 
+import mainSystem.model.taskUnitModels.Table;
+import mainSystem.model.taskUnitModels.Task;
+import mainSystem.model.taskUnitModels.TaskList;
 import mainSystem.model.userInitModels.Group;
 import mainSystem.model.userInitModels.User;
 import mainSystem.service.userService.SpringDataUserDetailsService;
@@ -90,7 +93,7 @@ public class WebConfig implements WebMvcConfigurer {
         properties.setProperty("hibernate.dialect","org.hibernate.dialect.PostgreSQLDialect");
 
         localSessionFactoryBean.setHibernateProperties(properties);
-        localSessionFactoryBean.setAnnotatedClasses(User.class, Group.class);
+        localSessionFactoryBean.setAnnotatedClasses(User.class, Group.class, Table.class, TaskList.class, Task.class);
         return localSessionFactoryBean;
     }
 
