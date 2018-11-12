@@ -17,18 +17,11 @@ public class InformationUserController {
     @Autowired
     UserService userService;
 
-   /* @GetMapping("/info")
-    public String getAllUserInfo(){
-        return "userInfo/userInfo";
-    }*/
-
     @RequestMapping(value = {"/info"},method = RequestMethod.GET)
     public ModelAndView createMainPage(Model model){
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.getUserByUsername(auth.getName());
-        System.out.println(user);
-        String user2 = "DEN";
         modelAndView.addObject("user",user);
         modelAndView.setViewName("userInfo/userInfo");
         return modelAndView;

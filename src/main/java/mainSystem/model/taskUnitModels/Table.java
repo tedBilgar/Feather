@@ -1,6 +1,13 @@
 package mainSystem.model.taskUnitModels;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import mainSystem.model.userInitModels.User;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @javax.persistence.Table(name = "table",schema = "main")
@@ -21,6 +28,11 @@ public class Table {
 
     @Column(columnDefinition = "kanbanid")
     private int kanbanid;
+
+    @ManyToMany(mappedBy = "tables")
+    @JsonIgnore
+    private Set<User> userSet = new HashSet<User>();
+
 
     public int getId() {
         return id;

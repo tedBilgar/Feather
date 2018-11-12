@@ -11,36 +11,20 @@
 <body class="text-center">
 <div sec:authorize="isAnonymous()">You have to login to delete or update list</div>
 <div sec:authorize="isAuthenticated()">
-    <div>
-        <p1>Hello,</p1>
-        <h1 th:text="${user.username}"></h1>
-        <h1 th:text="${user.email}"></h1>
-    </div>
+    <table >
+        <table border="1" cellpadding="5">
+            <caption><h2>Main User Information</h2></caption>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
 
-</div>
-<span th:text="${user.username}"></span>
-<span th:text="${user.email}"></span>
-<table >
-    <table border="1" cellpadding="5">
-        <caption><h2>List of ALL products</h2></caption>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Weight</th>
-            <th sec:authorize="isAuthenticated()">Update</th>
-            <th sec:authorize="isAuthenticated()">Delete</th>
+            </tr>
+            <tr th:object="${user}">
+                <td th:text="*{username}"></td>
+                <td th:text="*{email}"></td>
         </tr>
-        <tr ng-repeat="product in products">
-            <td>{{product.id}}</td>
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.weight}}</td>
-            <td sec:authorize="isAuthenticated()"><input type="button" ng-click="show(product)" value="Update"></td>
-            <td sec:authorize="isAuthenticated()"><input type="button" ng-click="delete(product)" value="Delete"></td>
-        </tr>
+        </table>
     </table>
-</table>
-</form>
+</div>
 </body>
 </html>

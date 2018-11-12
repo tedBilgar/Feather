@@ -3,8 +3,10 @@ package mainSystem.model.userInitModels;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users",schema = "main")
@@ -19,6 +21,15 @@ public class User {
     private String password;
     @Column(name = "email")
     private String email;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "users_and_table", schema = "main",
+            joinColumns = {@JoinColumn(name = "id_users")},
+            inverseJoinColumns = {@JoinColumn(name = "id_table")}
+    )
+    @JsonIgnore
+    private Set<Table> tables = new HashSet<Table>();
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
@@ -81,6 +92,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Table> getTables() {
+        return tables;
+    }
+
+    public void setTables(Set<Table> tables) {
+        this.tables = tables;
     }
 
     @Override

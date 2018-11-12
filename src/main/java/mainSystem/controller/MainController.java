@@ -24,47 +24,6 @@ public class MainController {
     @Autowired
     private GroupRepository groupRepository;
 
-    @GetMapping("/home")
-    public String home(Model model){
-        String user = "DENIS";
-        model.addAttribute("user23",user);
-        return "main";
-    }
-
-    @GetMapping("/user")
-    @ResponseBody
-    public User user(){
-        return userService.getUserById(1);
-    }
-
-    @GetMapping("/addUser")
-    public String add(){
-        User user = new User("Denisio","3ddas","asdx");
-        userService.addUser(user);
-        return "main";
-    }
-
-    @GetMapping("/")
-    @ResponseBody
-    public List<Group> getGroups(@RequestParam("id") int id){
-        List<Group> groups = userService.getGroupsOfUser(id);
-        System.out.println("GETTING");
-        System.out.println(groups);
-        return groups;
-    }
-
-    @GetMapping("/get")
-    @ResponseBody
-    public User getUser(){
-        return userService.getUserByUsername("Denis");
-    }
-
-    @GetMapping("/add")
-    @ResponseBody
-    public String gets(){
-        userService.addUser(new User("news","pass","email123"));
-        return "main";
-    }
 
 
 }
