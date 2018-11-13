@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -17,23 +18,27 @@ public class TableServiceImpl implements TableService{
 
 
     public Table getTableById(int id) {
-        return null;
+        return tableRepository.getTableById(id);
     }
 
     public Table getTableByName(String name) {
-        return null;
+        return tableRepository.getTableByName(name);
+    }
+
+    public List<Table> getAllTables() {
+        return tableRepository.getAllTables();
     }
 
     public void addTable(Table table) {
-
+        tableRepository.addTable(table);
     }
 
     public void setTable(Table table) {
-
+        tableRepository.setTable(table);
     }
 
     public void deleteTable(int tableId) {
-
+        tableRepository.deleteTable(tableId);
     }
 
     @Transactional

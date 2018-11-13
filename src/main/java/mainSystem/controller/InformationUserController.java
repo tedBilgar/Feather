@@ -1,6 +1,8 @@
 package mainSystem.controller;
 
+import mainSystem.model.taskUnitModels.Table;
 import mainSystem.model.userInitModels.User;
+import mainSystem.service.tableService.TableService;
 import mainSystem.service.userService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class InformationUserController {
     @Autowired
-    UserService userService;
+    private UserService userService;
+    @Autowired
+    private TableService tableService;
 
     @RequestMapping(value = {"/info"},method = RequestMethod.GET)
     public ModelAndView createMainPage(Model model){
@@ -23,6 +27,8 @@ public class InformationUserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.getUserByUsername(auth.getName());
         modelAndView.addObject("user",user);
+        modelAndView.addObject("table",new Table());
+        modelAndView.addObject("userTables",userService.getUserById(user.getId()).getTables());
         modelAndView.setViewName("userInfo/userInfo");
         return modelAndView;
     }

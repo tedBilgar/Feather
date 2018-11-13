@@ -1,5 +1,6 @@
 package mainSystem.service.userService;
 
+import mainSystem.model.taskUnitModels.Table;
 import mainSystem.model.userInitModels.Group;
 import mainSystem.model.userInitModels.User;
 
@@ -12,4 +13,7 @@ public interface UserService {
     void addUser(User user);
     List<Group> getGroupsOfUser(int userId);
     void updateUser(User user);
+
+    //Custom api service
+    void getTable(int userID, Table table);
 }

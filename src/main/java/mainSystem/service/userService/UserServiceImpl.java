@@ -1,6 +1,8 @@
 package mainSystem.service.userService;
 
+import mainSystem.dao.tableRepo.TableRepository;
 import mainSystem.dao.userRepository.UserRepository;
+import mainSystem.model.taskUnitModels.Table;
 import mainSystem.model.userInitModels.Group;
 import mainSystem.model.userInitModels.User;
 import org.apache.log4j.Logger;
@@ -17,6 +19,8 @@ import java.util.Set;
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TableRepository tableRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -53,6 +57,12 @@ public class UserServiceImpl implements UserService{
     }
 
     public void updateUser(User user){
+        userRepository.setUser(user);
+    }
+
+    public void getTable(int userID,Table table) {
+        User user = userRepository.getUserById(userID);
+        user.getTables().add(table);
         userRepository.setUser(user);
     }
 }

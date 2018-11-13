@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Set;
+
 @Repository
 public class TableRepositoryImpl implements TableRepository{
     private static final Logger logger = Logger.getLogger(TableRepository.class);
@@ -44,9 +47,16 @@ public class TableRepositoryImpl implements TableRepository{
     }
 
     @Transactional
-    public void addTable(Table table) {
+    public List<Table> getAllTables(){
+        List<Table> tables = getCurrentSessionFactory().createQuery("from Table t").list();
+        return tables;
+    }
+
+    @Transactional
+    public Table addTable(Table table) {
         logger.info("Adding table");
         getCurrentSessionFactory().save(table);
+        return table;
     }
 
     @Transactional
