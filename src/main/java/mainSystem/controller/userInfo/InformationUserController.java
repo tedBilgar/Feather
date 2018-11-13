@@ -1,4 +1,4 @@
-package mainSystem.controller;
+package mainSystem.controller.userInfo;
 
 import mainSystem.model.taskUnitModels.Table;
 import mainSystem.model.userInitModels.User;

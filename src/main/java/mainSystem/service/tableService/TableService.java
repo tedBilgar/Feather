@@ -1,6 +1,7 @@
 package mainSystem.service.tableService;
 
 import mainSystem.model.taskUnitModels.Table;
+import mainSystem.model.taskUnitModels.TaskList;
 import mainSystem.model.userInitModels.User;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface TableService {
     void setTable(Table table);
     void deleteTable(int tableId);
     Set<User> getUserSetOfTable(int id);
+    void addTaskList(int tableID, TaskList taskList);
  }

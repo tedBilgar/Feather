@@ -1,7 +1,9 @@
 package mainSystem.service.tableService;
 
 import mainSystem.dao.tableRepo.TableRepository;
+import mainSystem.dao.taskListRepo.TaskListRepository;
 import mainSystem.model.taskUnitModels.Table;
+import mainSystem.model.taskUnitModels.TaskList;
 import mainSystem.model.userInitModels.User;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ public class TableServiceImpl implements TableService{
     @Autowired
     private TableRepository tableRepository;
 
+    @Autowired
+    private TaskListRepository taskListRepository;
 
     public Table getTableById(int id) {
         return tableRepository.getTableById(id);
@@ -39,6 +43,12 @@ public class TableServiceImpl implements TableService{
 
     public void deleteTable(int tableId) {
         tableRepository.deleteTable(tableId);
+    }
+
+    public void addTaskList(int tableID, TaskList taskList){
+        Table table = tableRepository.getTableById(tableID);
+        table.getTaskLists().add(taskList);
+        tableRepository.setTable(table);
     }
 
     @Transactional

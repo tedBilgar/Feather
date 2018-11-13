@@ -1,5 +1,7 @@
 package mainSystem.model.taskUnitModels;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.persistence.Table;
 
@@ -14,14 +16,16 @@ public class TaskList {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "id_table")
-    private int id_table;
-
     @Column(name = "assignedgroupid")
     private int assignedgroupid;
 
     @Column(name = "assigneduserid")
     private int assigneduserid;
+
+    @ManyToOne
+    @JoinColumn(name = "id_table")
+    @JsonIgnore
+    private mainSystem.model.taskUnitModels.Table taskTable;
 
     public int getId() {
         return id;
@@ -39,14 +43,6 @@ public class TaskList {
         this.name = name;
     }
 
-    public int getId_table() {
-        return id_table;
-    }
-
-    public void setId_table(int id_table) {
-        this.id_table = id_table;
-    }
-
     public int getAssignedgroupid() {
         return assignedgroupid;
     }
@@ -61,5 +57,13 @@ public class TaskList {
 
     public void setAssigneduserid(int assigneduserid) {
         this.assigneduserid = assigneduserid;
+    }
+
+    public mainSystem.model.taskUnitModels.Table getTaskTable() {
+        return taskTable;
+    }
+
+    public void setTaskTable(mainSystem.model.taskUnitModels.Table taskTable) {
+        this.taskTable = taskTable;
     }
 }

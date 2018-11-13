@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import mainSystem.model.userInitModels.User;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,6 +32,9 @@ public class Table {
     @JsonIgnore
     private Set<User> userSet = new HashSet<User>();
 
+    @OneToMany(mappedBy = "taskTable")
+    @JsonIgnore
+    private Set<TaskList> taskLists = new HashSet<TaskList>();
 
     public int getId() {
         return id;
@@ -78,5 +82,13 @@ public class Table {
 
     public void setUserSet(Set<User> userSet) {
         this.userSet = userSet;
+    }
+
+    public Set<TaskList> getTaskLists() {
+        return taskLists;
+    }
+
+    public void setTaskLists(Set<TaskList> taskLists) {
+        this.taskLists = taskLists;
     }
 }

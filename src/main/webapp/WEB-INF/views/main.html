@@ -3,11 +3,8 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>The Main Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,9 +14,16 @@
     <link href="css/signin.css" rel="stylesheet">
 </head>
 
-<body class="text-center">
-    MAIN PAGE
-    <span th:text="${user23}"></span>
+<body >
+    <h1>All Tables in Service</h1>
+    <table>
+        <tr>
+            <th>Table List</th>
+        </tr>
+        <tr th:each="table : ${tables}">
+            <td><a th:href="@{/table/__${table.id}__}" th:text="${table.name}">Go to</a></td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>

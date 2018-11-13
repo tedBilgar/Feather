@@ -21,7 +21,6 @@
             <tr th:object="${user}">
                 <td th:text="*{username}"></td>
                 <td th:text="*{email}"></td>
-                <td th:text="*{id}"></td>
             </tr>
         </table>
     </table>
@@ -39,7 +38,7 @@
             <th>Table name</th>
         </tr>
         <tr th:each="table : ${userTables}">
-            <td th:text="${table.name}"></td>
+            <td><a th:href="@{/table/__${table.id}__}" th:text="${table.name}"></a></td>
         </tr>
     </table>
 </div>
