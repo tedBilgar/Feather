@@ -1,6 +1,5 @@
-package mainSystem.dao.taskListRepo;
+package mainSystem.dao.TaskUnitRepos.taskListRepo;
 
-import mainSystem.dao.tableRepo.TableRepository;
 import mainSystem.model.taskUnitModels.TaskList;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;

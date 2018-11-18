@@ -3,17 +3,17 @@
       xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Table Info</title>
+    <title>Task List Info</title>
 
 </head>
 
 <body class="text-center">
-<div sec:authorize="isAnonymous()">You have to login to delete or update list</div>
+<div sec:authorize="isAnonymous()">You have to login to delete or update task</div>
 <div sec:authorize="isAuthenticated()">
-    <h2 th:text="${table.name}"></h2>
+    <h2 th:text="${tasklist.name}"></h2>
 
-    <h2>Add new Task List</h2>
-    <form th:action="@{/rest/table/__${table.id}__/tasklists/load}" method="post" th:object="${newTask}">
+    <h2>Add new Task </h2>
+    <form th:action="@{/rest/tasklist/__${tasklist.id}__/tasks/add}" method="post" th:object="${newTask}">
         <label for="name">Task List Name</label>
         <input type="text" th:field="*{name}" id="name" name="name"  placeholder="name" required autofocus>
 
@@ -21,10 +21,10 @@
     </form>
     <table >
         <tr>
-            <th>Task List name</th>
+            <th>Tasks name</th>
         </tr>
-        <tr th:each="tasklist : ${taskLists}">
-            <td><a th:href="@{/tasklist/__${tasklist.id}__}" th:text="${tasklist.name}"></a></td>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.name}"></td>
         </tr>
     </table>
 </div>

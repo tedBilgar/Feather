@@ -1,4 +1,4 @@
-package mainSystem.service.tableService;
+package mainSystem.service.taskUnitService.tableService;
 
 import mainSystem.model.taskUnitModels.Table;
 import mainSystem.model.taskUnitModels.TaskList;

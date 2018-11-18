@@ -1,9 +1,7 @@
-package mainSystem.dao.tableRepo;
+package mainSystem.dao.TaskUnitRepos.tableRepo;
 
-import mainSystem.dao.userRepository.UserRepository;
 import mainSystem.model.taskUnitModels.Table;
 import org.apache.log4j.Logger;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

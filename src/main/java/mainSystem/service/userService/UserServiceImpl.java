@@ -1,6 +1,6 @@
 package mainSystem.service.userService;
 
-import mainSystem.dao.tableRepo.TableRepository;
+import mainSystem.dao.TaskUnitRepos.tableRepo.TableRepository;
 import mainSystem.dao.userRepository.UserRepository;
 import mainSystem.model.taskUnitModels.Table;
 import mainSystem.model.userInitModels.Group;
@@ -60,9 +60,29 @@ public class UserServiceImpl implements UserService{
         userRepository.setUser(user);
     }
 
-    public void getTable(int userID,Table table) {
+    public Table addTable(int userID, Table table) {
         User user = userRepository.getUserById(userID);
         user.getTables().add(table);
         userRepository.setUser(user);
+        return table;
     }
+
+    @Transactional
+    public Set<Table> getAllTables(int userID) {
+        Set<Table> tables =  userRepository.getUserById(userID).getTables();
+        Hibernate.initialize(tables);
+        return tables;
+    }
+
+    @Transactional
+    public Table getTableByID(int tableID) {
+        Table table = tableRepository.getTableById(tableID);
+        return table;
+    }
+
+   /* public void getTable(int userID,Table table) {
+        User user = userRepository.getUserById(userID);
+        user.getTables().add(table);
+        userRepository.setUser(user);
+    }*/
 }

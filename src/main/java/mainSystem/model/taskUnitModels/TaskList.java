@@ -1,9 +1,12 @@
 package mainSystem.model.taskUnitModels;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "task_list",schema = "main")
@@ -27,7 +30,10 @@ public class TaskList {
     @JsonIgnore
     private mainSystem.model.taskUnitModels.Table taskTable;
 
-    
+    @OneToMany(mappedBy = "taskList")
+    @JsonIgnore
+    private Set<Task> tasks = new HashSet<Task>();
+
     public int getId() {
         return id;
     }
@@ -66,5 +72,13 @@ public class TaskList {
 
     public void setTaskTable(mainSystem.model.taskUnitModels.Table taskTable) {
         this.taskTable = taskTable;
+    }
+
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 }

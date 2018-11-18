@@ -1,11 +1,10 @@
-package mainSystem.service.tableService;
+package mainSystem.service.taskUnitService.tableService;
 
-import mainSystem.dao.tableRepo.TableRepository;
-import mainSystem.dao.taskListRepo.TaskListRepository;
+import mainSystem.dao.TaskUnitRepos.tableRepo.TableRepository;
 import mainSystem.model.taskUnitModels.Table;
 import mainSystem.model.taskUnitModels.TaskList;
 import mainSystem.model.userInitModels.User;
-import mainSystem.service.taskListService.TaskListService;
+import mainSystem.service.taskUnitService.taskListService.TaskListService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

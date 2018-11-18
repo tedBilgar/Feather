@@ -1,8 +1,9 @@
 package mainSystem.model.taskUnitModels;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Entity
 @Table(name = "task",schema = "main")
@@ -15,17 +16,19 @@ public class Task {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "id_list")
-    private int id_list;
-
     @Column(name = "assignedgroupid")
-    private int assignedgroupid;
+    private Integer assignedgroupid;
 
-    @Column(name = "assigneduserid")
-    private int assigneduserid;
+    @Column(name = "assignedusersid")
+    private Integer assigneduserid;
 
     @Column(name = "isdone")
     private boolean isDone;
+
+    @ManyToOne
+    @JoinColumn(name = "id_list")
+    @JsonIgnore
+    private TaskList taskList;
 
     public int getId() {
         return id;
@@ -43,27 +46,19 @@ public class Task {
         this.name = name;
     }
 
-    public int getId_list() {
-        return id_list;
-    }
-
-    public void setId_list(int id_list) {
-        this.id_list = id_list;
-    }
-
-    public int getAssignedgroupid() {
+    public Integer getAssignedgroupid() {
         return assignedgroupid;
     }
 
-    public void setAssignedgroupid(int assignedgroupid) {
+    public void setAssignedgroupid(Integer assignedgroupid) {
         this.assignedgroupid = assignedgroupid;
     }
 
-    public int getAssigneduserid() {
+    public Integer getAssigneduserid() {
         return assigneduserid;
     }
 
-    public void setAssigneduserid(int assigneduserid) {
+    public void setAssigneduserid(Integer assigneduserid) {
         this.assigneduserid = assigneduserid;
     }
 
@@ -73,6 +68,14 @@ public class Task {
 
     public void setDone(boolean done) {
         isDone = done;
+    }
+
+    public TaskList getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(TaskList taskList) {
+        this.taskList = taskList;
     }
 
     /*private String name;

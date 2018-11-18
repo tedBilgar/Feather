@@ -1,23 +1,12 @@
 package mainSystem.controller.main;
 
-import mainSystem.dao.groupRepository.GroupRepository;
-import mainSystem.model.taskUnitModels.Table;
-import mainSystem.model.userInitModels.Group;
-import mainSystem.model.userInitModels.User;
-import mainSystem.service.tableService.TableService;
+import mainSystem.dao.TaskUnitRepos.groupRepository.GroupRepository;
+import mainSystem.service.taskUnitService.tableService.TableService;
 import mainSystem.service.userService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.jws.WebParam;
-import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/main")

@@ -1,10 +1,10 @@
-package mainSystem.service.taskListService;
+package mainSystem.dao.TaskUnitRepos.taskListRepo;
 
 import mainSystem.model.taskUnitModels.TaskList;
 
 import java.util.List;
 
-public interface TaskListService {
+public interface TaskListRepository {
     TaskList getTaskListById(int id);
     List<TaskList> getAllTaskListByTableID(int tableID);
     TaskList addTaskList(TaskList taskList);

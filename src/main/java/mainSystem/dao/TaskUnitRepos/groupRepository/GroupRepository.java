@@ -1,4 +1,4 @@
-package mainSystem.dao.groupRepository;
+package mainSystem.dao.TaskUnitRepos.groupRepository;
 
 import mainSystem.model.userInitModels.Group;
 

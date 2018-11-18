@@ -1,9 +1,8 @@
-package mainSystem.dao.tableRepo;
+package mainSystem.dao.TaskUnitRepos.tableRepo;
 
 import mainSystem.model.taskUnitModels.Table;
 
 import java.util.List;
-import java.util.Set;
 
 public interface TableRepository {
     Table getTableById(int id);

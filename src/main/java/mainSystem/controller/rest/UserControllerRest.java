@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("/rest/user")
+@RestController
 public class UserControllerRest {
     @Autowired
     private UserService userService;
@@ -20,9 +21,7 @@ public class UserControllerRest {
     }
 
     @RequestMapping(value = "/{userID}/add/table",method = RequestMethod.POST)
-    public String addTable(@ModelAttribute Table table,@PathVariable("userID")int userID){
-        System.out.println("SET " + userID);
-        userService.getTable(userID,table);
-        return "redirect:/info";
+    public Table addTable(@ModelAttribute Table table,@PathVariable("userID")int userID){
+        return userService.addTable(userID,table);
     }
 }

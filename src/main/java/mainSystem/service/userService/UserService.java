@@ -15,5 +15,7 @@ public interface UserService {
     void updateUser(User user);
 
     //Custom api service
-    void getTable(int userID, Table table);
+    Table addTable(int userID, Table table);
+    Set<Table> getAllTables(int userID);
+    Table getTableByID(int tableID);
 }
