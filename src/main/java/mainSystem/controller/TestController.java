@@ -1,10 +1,9 @@
 package mainSystem.controller;
 
 import mainSystem.dao.tableRepo.TableRepository;
-import mainSystem.dao.userRepository.UserRepository;
-import mainSystem.model.taskUnitModels.Table;
+import mainSystem.dao.taskListRepo.TaskListRepository;
+import mainSystem.model.taskUnitModels.TaskList;
 import mainSystem.model.userInitModels.Group;
-import mainSystem.model.userInitModels.User;
 import mainSystem.service.tableService.TableService;
 import mainSystem.service.userService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +25,13 @@ public class TestController {
     @Autowired
     TableService tableService;
 
-    @GetMapping("/test")
+    @Autowired
+    TaskListRepository taskListRepository;
+
+    @GetMapping("/test1")
     @ResponseBody
-    public Set<User> getTest(){
-        System.out.println(userService.getUserById(2).getTables());
-        return tableService.getUserSetOfTable(1);
+    public List<TaskList> getTest(){
+        return taskListRepository.getAllTaskListByTableID(29);
     }
 
     @GetMapping("/test2")

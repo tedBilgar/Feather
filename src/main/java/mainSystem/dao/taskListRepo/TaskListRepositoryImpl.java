@@ -18,6 +18,7 @@ public class TaskListRepositoryImpl implements TaskListRepository {
     @Autowired
     private SessionFactory sessionFactory;
 
+
     private Session getCurrentSessionFactory(){
         return sessionFactory.getCurrentSession();
     }
@@ -38,11 +39,14 @@ public class TaskListRepositoryImpl implements TaskListRepository {
         return taskList;
     }
 
+    @Transactional
     public void setTaskList(TaskList taskList) {
-
+        getCurrentSessionFactory().update(taskList);
     }
 
+    @Transactional
     public void deleteTaskList(int taskListID) {
-
+        TaskList taskList = getTaskListById(taskListID);
+        getCurrentSessionFactory().delete(taskList);
     }
 }

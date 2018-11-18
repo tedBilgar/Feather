@@ -17,16 +17,17 @@ public class TaskList {
     private String name;
 
     @Column(name = "assignedgroupid")
-    private int assignedgroupid;
+    private Integer assignedgroupid;
 
-    @Column(name = "assigneduserid")
-    private int assigneduserid;
+    @Column(name = "assignedusersid")
+    private Integer assigneduserid;
 
     @ManyToOne
     @JoinColumn(name = "id_table")
     @JsonIgnore
     private mainSystem.model.taskUnitModels.Table taskTable;
 
+    
     public int getId() {
         return id;
     }
@@ -43,19 +44,19 @@ public class TaskList {
         this.name = name;
     }
 
-    public int getAssignedgroupid() {
+    public Integer getAssignedgroupid() {
         return assignedgroupid;
     }
 
-    public void setAssignedgroupid(int assignedgroupid) {
+    public void setAssignedgroupid(Integer assignedgroupid) {
         this.assignedgroupid = assignedgroupid;
     }
 
-    public int getAssigneduserid() {
+    public Integer getAssigneduserid() {
         return assigneduserid;
     }
 
-    public void setAssigneduserid(int assigneduserid) {
+    public void setAssigneduserid(Integer assigneduserid) {
         this.assigneduserid = assigneduserid;
     }
 

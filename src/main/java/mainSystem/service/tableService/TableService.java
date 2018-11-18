@@ -15,5 +15,8 @@ public interface TableService {
     void setTable(Table table);
     void deleteTable(int tableId);
     Set<User> getUserSetOfTable(int id);
-    void addTaskList(int tableID, TaskList taskList);
+
+    TaskList addTaskList(TaskList taskList, int tableID);
+    TaskList getTaskList(int taskListID);
+    Set<TaskList> getAllTaskListOfTable(int tableID);
  }

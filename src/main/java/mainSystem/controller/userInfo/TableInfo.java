@@ -1,6 +1,5 @@
 package mainSystem.controller.userInfo;
 
-import mainSystem.dao.taskListRepo.TaskListRepository;
 import mainSystem.model.taskUnitModels.TaskList;
 import mainSystem.service.tableService.TableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +15,12 @@ public class TableInfo {
     @Autowired
     private TableService tableService;
 
-    @Autowired
-    private TaskListRepository taskListRepository;
-
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public ModelAndView getTableMainPage(@PathVariable("id") int id){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("table",tableService.getTableById(id));
         modelAndView.addObject("newTask",new TaskList());
-        modelAndView.addObject("taskLists",taskListRepository.getAllTaskListByTableID(id));
+        modelAndView.addObject("taskLists",tableService.getAllTaskListOfTable(id));
         modelAndView.setViewName("userInfo/table");
         return modelAndView;
     }

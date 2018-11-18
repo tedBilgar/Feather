@@ -13,7 +13,7 @@
     <h2 th:text="${table.name}"></h2>
 
     <h2>Add new Task List</h2>
-    <form th:action="@{/rest/tasklist/__${table.id}__}" method="post" th:object="${newTask}">
+    <form th:action="@{/rest/table/__${table.id}__/tasklists/load}" method="post" th:object="${newTask}">
         <label for="name">Task List Name</label>
         <input type="text" th:field="*{name}" id="name" name="name"  placeholder="name" required autofocus>
 

@@ -5,6 +5,7 @@ import mainSystem.dao.taskListRepo.TaskListRepository;
 import mainSystem.model.taskUnitModels.Table;
 import mainSystem.model.taskUnitModels.TaskList;
 import mainSystem.model.userInitModels.User;
+import mainSystem.service.taskListService.TaskListService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class TableServiceImpl implements TableService{
     private TableRepository tableRepository;
 
     @Autowired
-    private TaskListRepository taskListRepository;
+    private TaskListService taskListService;
 
     public Table getTableById(int id) {
         return tableRepository.getTableById(id);
@@ -45,16 +46,31 @@ public class TableServiceImpl implements TableService{
         tableRepository.deleteTable(tableId);
     }
 
-    public void addTaskList(int tableID, TaskList taskList){
-        Table table = tableRepository.getTableById(tableID);
-        table.getTaskLists().add(taskList);
-        tableRepository.setTable(table);
-    }
-
     @Transactional
     public Set<User> getUserSetOfTable(int id) {
         Set<User> userSet = tableRepository.getTableById(id).getUserSet();
         Hibernate.initialize(userSet);
         return userSet;
+    }
+
+    public TaskList addTaskList(TaskList taskList, int tableID) {
+        taskList.setTaskTable(tableRepository.getTableById(tableID));
+        taskListService.addTaskList(taskList);
+        return taskList;
+    }
+
+    @Transactional
+    public TaskList getTaskList(int taskListID) {
+        TaskList taskList = taskListService.getTaskListById(taskListID);
+        Hibernate.initialize(taskList);
+        return taskList;
+    }
+
+    @Transactional
+    public Set<TaskList> getAllTaskListOfTable(int tableID) {
+        Table table = tableRepository.getTableById(tableID);
+        Set<TaskList> taskList = table.getTaskLists();
+        Hibernate.initialize(taskList);
+        return taskList;
     }
 }
