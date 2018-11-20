@@ -40,6 +40,7 @@ public class User {
     @JsonIgnore
     private List<Group> groups = new LinkedList<Group>();
 
+
     public User() {
     }
 
@@ -101,6 +102,7 @@ public class User {
     public void setTables(Set<mainSystem.model.taskUnitModels.Table> tables) {
         this.tables = tables;
     }
+
 
     @Override
     public String toString() {

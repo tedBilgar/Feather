@@ -36,7 +36,7 @@ public class TestController {
     @GetMapping("/test1")
     @ResponseBody
     public Set<Task> getTest(){
-        return taskListRepository.getTaskListById(4).getTasks();
+        return taskService.getRelationOfTask(2);
     }
 
     @GetMapping("/test2")

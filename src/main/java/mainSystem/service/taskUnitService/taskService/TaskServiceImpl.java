@@ -2,8 +2,12 @@ package mainSystem.service.taskUnitService.taskService;
 
 import mainSystem.dao.TaskUnitRepos.taskRepo.TaskRepository;
 import mainSystem.model.taskUnitModels.Task;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Set;
 
 @Service
 public class TaskServiceImpl implements TaskService{
@@ -25,5 +29,13 @@ public class TaskServiceImpl implements TaskService{
 
     public void deleteTask(int taskID) {
         taskRepository.deleteTask(taskID);
+    }
+
+    @Transactional
+    public Set<Task> getRelationOfTask(int taskID){
+        Task task = taskRepository.getTaskById(taskID);
+        Set<Task> taskRelation = task.getTaskRelation();
+        Hibernate.initialize(taskRelation);
+        return taskRelation;
     }
 }
