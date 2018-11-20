@@ -3,7 +3,6 @@ package mainSystem.controller;
 import mainSystem.dao.TaskUnitRepos.tableRepo.TableRepository;
 import mainSystem.dao.TaskUnitRepos.taskListRepo.TaskListRepository;
 import mainSystem.model.taskUnitModels.Task;
-import mainSystem.model.taskUnitModels.TaskList;
 import mainSystem.model.userInitModels.Group;
 import mainSystem.service.taskUnitService.tableService.TableService;
 import mainSystem.service.taskUnitService.taskService.TaskService;
@@ -13,8 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class TestController {
@@ -35,8 +34,13 @@ public class TestController {
 
     @GetMapping("/test1")
     @ResponseBody
-    public Set<Task> getTest(){
-        return taskService.getRelationOfTask(2);
+    public void getTest(){
+        List<Task> tasks = new ArrayList<Task>();
+        tasks.add(taskService.getTaskById(2));
+        tasks.add(taskService.getTaskById(4));
+        Task task3 = taskService.getTaskById(3);
+        task3.setTaskRelation(tasks);
+        taskService.setTask(task3);
     }
 
     @GetMapping("/test2")

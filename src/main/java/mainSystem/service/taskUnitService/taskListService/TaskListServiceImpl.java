@@ -51,4 +51,10 @@ public class TaskListServiceImpl implements TaskListService{
         Hibernate.initialize(tasks);
         return tasks;
     }
+
+    public void setTaskRelation(int taskID, List tasksDependencies){
+        Task task = taskService.getTaskById(taskID);
+        task.setTaskRelation(tasksDependencies);
+        taskService.setTask(task);
+    }
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class TaskServiceImpl implements TaskService{
@@ -32,9 +32,9 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Transactional
-    public Set<Task> getRelationOfTask(int taskID){
+    public List getRelationOfTask(int taskID){
         Task task = taskRepository.getTaskById(taskID);
-        Set<Task> taskRelation = task.getTaskRelation();
+        List taskRelation = task.getTaskRelation();
         Hibernate.initialize(taskRelation);
         return taskRelation;
     }

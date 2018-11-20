@@ -29,8 +29,10 @@ public class TaskListControllerRest {
     }
 
     @RequestMapping(value = "/{id}/tasks/add",method = RequestMethod.POST)
-    public void addTask(@PathVariable("id")int id,@ModelAttribute Task task){
-        taskListService.addTask(task, id);
+    public void addTask(@PathVariable("id")int id,@ModelAttribute Task task,@RequestParam(value = "taskRelation")List<Task> tasks){
+        //taskListService.addTask(task, id);
+        System.out.println("HERE");
+        System.out.println(task.getTaskRelation());
     }
 
 }

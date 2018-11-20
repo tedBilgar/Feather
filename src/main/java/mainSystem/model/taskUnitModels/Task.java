@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.persistence.Table;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "task",schema = "main")
@@ -36,7 +37,7 @@ public class Task {
             joinColumns = @JoinColumn(name = "id_task",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_parent",referencedColumnName = "id"))
     @JsonIgnore
-    private Set<Task> taskRelation;
+    private List<Task> taskRelation = new ArrayList<Task>();
 
     public int getId() {
         return id;
@@ -86,12 +87,19 @@ public class Task {
         this.taskList = taskList;
     }
 
-    public Set<Task> getTaskRelation() {
+    public List<Task> getTaskRelation() {
         return taskRelation;
     }
 
-    public void setTaskRelation(Set<Task> taskRelation) {
+    public void setTaskRelation(List<Task> taskRelation) {
         this.taskRelation = taskRelation;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "name='" + name + '\'' +
+                '}';
     }
 
     /*private String name;

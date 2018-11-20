@@ -17,6 +17,21 @@
         <label for="name">Task List Name</label>
         <input type="text" th:field="*{name}" id="name" name="name"  placeholder="name" required autofocus>
 
+        <!--<label for="taskBoxes">Choose Dependency</label>
+        <tr th:each="task,stat :${tasks}" id="taskBoxes">
+            <td><input type="checkbox" th:field="${newTask.taskRelation}" th:value="${task}" th:text="${task.name}" ></td>
+        </tr>-->
+        <ul>
+            <li th:each="task: ${tasks}">
+                <input type="checkbox"
+                       th:field="${newTask.taskRelation}"
+                       th:value="${task}"
+                       th:name="taskRelation">
+                <!--<label
+                        th:for="${#ids.prev('taskRelation')}"
+                        th:text="${task.name}"></label>-->
+            </li>
+        </ul>
         <button type="submit">Create</button>
     </form>
     <table >
