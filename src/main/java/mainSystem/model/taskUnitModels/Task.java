@@ -32,11 +32,10 @@ public class Task {
     @JsonIgnore
     private TaskList taskList;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable( name = "taskrelation",schema = "main",
             joinColumns = @JoinColumn(name = "id_task",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_parent",referencedColumnName = "id"))
-    @JsonIgnore
     private List<Task> taskRelation = new ArrayList<Task>();
 
     @Transient

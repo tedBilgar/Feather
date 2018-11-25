@@ -4,7 +4,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Task List Info</title>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <style type="text/css">
+        #mynetwork {
+            width: 600px;
+            height: 400px;
+            border: 1px solid lightgray;
+        }
+    </style>
 </head>
 
 <body class="text-center">
@@ -37,5 +45,47 @@
         </tr>
     </table>
 </div>
+
+<p>
+    Create a simple network with some nodes and edges.
+</p>
+
+<div id="mynetwork"></div>
+
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+
+    var message = /*[[${tasks}]]*/ 'default';
+
+    /*]]>*/
+    var array = [];
+    message.forEach(function (task) {
+        array.push({id:task.id, label: task.name});
+
+    });
+    // create an array with nodes
+    var nodes = new vis.DataSet(array);
+
+    var array2 = [];
+    message.forEach(function (task) {
+        if (task.taskRelation.length != 0 ){
+            task.taskRelation.forEach(function (taskPar) {
+                array2.push({from:taskPar.id, to: task.id, arrows:'to'});
+            });
+        }
+    });
+    // create an array with edges
+    var edges = new vis.DataSet(array2);
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {};
+    var network = new vis.Network(container, data, options);
+</script>
+
 </body>
 </html>
