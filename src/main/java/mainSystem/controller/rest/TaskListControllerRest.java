@@ -4,11 +4,11 @@ import mainSystem.model.taskUnitModels.Table;
 import mainSystem.model.taskUnitModels.Task;
 import mainSystem.model.taskUnitModels.TaskList;
 import mainSystem.service.taskUnitService.taskListService.TaskListService;
+import mainSystem.service.taskUnitService.taskService.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -17,6 +17,9 @@ import java.util.Set;
 public class TaskListControllerRest {
     @Autowired
     private TaskListService taskListService;
+
+    @Autowired
+    private TaskService taskService;
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public TaskList getTaskList(@PathVariable("id")int id){
@@ -29,10 +32,12 @@ public class TaskListControllerRest {
     }
 
     @RequestMapping(value = "/{id}/tasks/add",method = RequestMethod.POST)
-    public void addTask(@PathVariable("id")int id,@ModelAttribute Task task,@RequestParam(value = "taskRelation")List<Task> tasks){
-        //taskListService.addTask(task, id);
-        System.out.println("HERE");
-        System.out.println(task.getTaskRelation());
+    public void addTask(@PathVariable("id")int id,@ModelAttribute("newTask") Task task){
+        for (int taskID:
+             task.getDependencyID()) {
+            task.getTaskRelation().add(taskService.getTaskById(taskID));
+        }
+        taskListService.addTask(task, id);
     }
 
 }

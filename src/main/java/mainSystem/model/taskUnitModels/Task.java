@@ -39,6 +39,9 @@ public class Task {
     @JsonIgnore
     private List<Task> taskRelation = new ArrayList<Task>();
 
+    @Transient
+    private List<Integer> dependencyID = new ArrayList<Integer>();
+
     public int getId() {
         return id;
     }
@@ -95,10 +98,19 @@ public class Task {
         this.taskRelation = taskRelation;
     }
 
+    public List<Integer> getDependencyID() {
+        return dependencyID;
+    }
+
+    public void setDependencyID(List<Integer> dependencyID) {
+        this.dependencyID = dependencyID;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
                 "name='" + name + '\'' +
+                ", taskRelation=" + taskRelation +
                 '}';
     }
 
