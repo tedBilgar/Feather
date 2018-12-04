@@ -36,19 +36,56 @@
 
         <button type="submit">Create</button>
     </form>
+    <form th:action="@{/rest/tasklist/__${tasklist.id}__/tasks/setRelation}" method="get">
+
+        <span>Choose Parent</span>
+        <select th:name="parentID">
+            <option th:each="task : ${tasks}"
+                    th:value="${task.id}"
+                    th:text="${task.name}"></option>
+        </select>
+
+        <span>Choose Child</span>
+        <select th:name="taskID">
+            <option th:each="task : ${tasks}"
+                    th:value="${task.id}"
+                    th:text="${task.name}"></option>
+        </select>
+        <button type="submit">Set Relation</button>
+    </form>
+    <form th:action="@{/rest/tasklist/__${tasklist.id}__/tasks/deleteRelation}" method="get">
+
+        <span>Delete relation</span>
+        <span>Choose First Node</span>
+        <select th:name="parentID">
+            <option th:each="task : ${tasks}"
+                    th:value="${task.id}"
+                    th:text="${task.name}"></option>
+        </select>
+
+        <span>Choose Second Node</span>
+        <select th:name="taskID">
+            <option th:each="task : ${tasks}"
+                    th:value="${task.id}"
+                    th:text="${task.name}"></option>
+        </select>
+        <button type="submit">Delete Relation</button>
+    </form>
     <table >
         <tr>
-            <th>Tasks name</th>
+            <th><h1>All Tasks</h1></th>
         </tr>
         <tr th:each="task : ${tasks}">
             <td th:text="${task.name}"></td>
         </tr>
     </table>
+
+
 </div>
 
-<p>
-    Create a simple network with some nodes and edges.
-</p>
+<h2>
+    Graphical representation of Task Network
+</h2>
 
 <div id="mynetwork"></div>
 

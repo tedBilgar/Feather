@@ -1,4 +1,4 @@
-package mainSystem.controller.userInfo;
+package mainSystem.controller.model_view.userInfo;
 
 import mainSystem.model.taskUnitModels.TaskList;
 import mainSystem.service.taskUnitService.tableService.TableService;

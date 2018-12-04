@@ -5,6 +5,7 @@ import mainSystem.dao.TaskUnitRepos.taskListRepo.TaskListRepository;
 import mainSystem.model.taskUnitModels.Task;
 import mainSystem.model.userInitModels.Group;
 import mainSystem.service.taskUnitService.tableService.TableService;
+import mainSystem.service.taskUnitService.taskListService.TaskListService;
 import mainSystem.service.taskUnitService.taskService.TaskService;
 import mainSystem.service.userService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +33,13 @@ public class TestController {
     @Autowired
     TaskService taskService;
 
+    @Autowired
+    TaskListService taskListService;
+
     @GetMapping("/test1")
     @ResponseBody
     public void getTest(){
-        List<Task> tasks = new ArrayList<Task>();
-        tasks.add(taskService.getTaskById(2));
-        tasks.add(taskService.getTaskById(4));
-        Task task3 = taskService.getTaskById(3);
-        task3.setTaskRelation(tasks);
-        taskService.setTask(task3);
+        taskListService.setRelationBetweenTasks(20,21);
     }
 
     @GetMapping("/test2")

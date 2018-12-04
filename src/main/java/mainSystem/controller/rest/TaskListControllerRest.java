@@ -40,4 +40,15 @@ public class TaskListControllerRest {
         taskListService.addTask(task, id);
     }
 
+    //TODO make more clearly
+    @RequestMapping(value = "/{id}/tasks/setRelation",method = RequestMethod.GET)
+    public void setRelation(@RequestParam("parentID")int parentID,@RequestParam("taskID")int taskID){
+        taskListService.setRelationBetweenTasks(parentID,taskID);
+    }
+
+    @RequestMapping(value = "/{id}/tasks/deleteRelation",method = RequestMethod.GET)
+    public String deleteRelation(@RequestParam("parentID")int parentID,@RequestParam("taskID")int taskID){
+        if (!taskListService.deleteRelationBetweenTasks(parentID,taskID)) return "Error";
+        return "Nice";
+    }
 }

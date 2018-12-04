@@ -40,6 +40,9 @@ public class TaskListServiceImpl implements TaskListService{
         taskListRepository.deleteTaskList(taskListID);
     }
 
+
+    //--------------------Custom functions for using Tasks-----------------------------------------------------
+
     public void addTask(Task task,int task_listID){
         task.setTaskList(taskListRepository.getTaskListById(task_listID));
         taskService.addTaskList(task);
@@ -52,9 +55,43 @@ public class TaskListServiceImpl implements TaskListService{
         return tasks;
     }
 
+
+
     public void setTaskRelation(int taskID, List tasksDependencies){
         Task task = taskService.getTaskById(taskID);
         task.setTaskRelation(tasksDependencies);
         taskService.setTask(task);
+    }
+
+    //TODO Unique Value
+    public void setRelationBetweenTasks(int taskParentID, int taskID) {
+        Task parent = taskService.getTaskById(taskParentID);
+        Task task = taskService.getTaskById(taskID);
+        task.getTaskRelation().add(parent);
+        taskService.setTask(task);
+    }
+
+    public boolean deleteRelationBetweenTasks(int taskParentID, int taskID) {
+        Task task = taskService.getTaskById(taskID);
+        List<Task> taskList = task.getTaskRelation();
+        for (Task relativeTask:
+             taskList) {
+            if (relativeTask.getId() == taskParentID){
+                task.getTaskRelation().remove(relativeTask);
+                taskService.setTask(task);
+                return true;
+            }
+        }
+        Task task2 = taskService.getTaskById(taskParentID);
+        List<Task> taskList2 = task2.getTaskRelation();
+        for (Task relativeTask2:
+             taskList2) {
+            if(relativeTask2.getId() == taskID){
+                task2.getTaskRelation().remove(relativeTask2);
+                taskService.setTask(task2);
+                return true;
+            }
+        }
+        return false;
     }
 }
