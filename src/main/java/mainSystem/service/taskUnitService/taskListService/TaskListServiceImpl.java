@@ -94,4 +94,17 @@ public class TaskListServiceImpl implements TaskListService{
         }
         return false;
     }
+
+    public void changeTaskList(int old_taskListID, int new_taskListID) {
+        TaskList oldList = taskListRepository.getTaskListById(old_taskListID);
+        TaskList newList = taskListRepository.getTaskListById(new_taskListID);
+
+        for (Task task: oldList.getTasks()) {
+            task.setTaskList(newList);
+            taskService.setTask(task);
+        }
+
+    }
+
+
 }

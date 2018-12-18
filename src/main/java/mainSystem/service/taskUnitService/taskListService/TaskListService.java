@@ -19,4 +19,5 @@ public interface TaskListService {
     void setTaskRelation(int taskID, List tasksDependencies);
     void setRelationBetweenTasks(int taskParentID,int taskID);
     boolean deleteRelationBetweenTasks(int taskParentID,int taskID);
+    void changeTaskList(int old_taskListID, int new_taskListID);
 }

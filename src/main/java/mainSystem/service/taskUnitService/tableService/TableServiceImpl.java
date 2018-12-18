@@ -72,4 +72,14 @@ public class TableServiceImpl implements TableService{
         Hibernate.initialize(taskList);
         return taskList;
     }
+
+    public void mergeTables(int old_tableID, int new_tableID) {
+        Table old_table = tableRepository.getTableById(old_tableID);
+        Table new_table = tableRepository.getTableById(new_tableID);
+
+        for (TaskList tasklist: old_table.getTaskLists()) {
+            tasklist.setTaskTable(new_table);
+            taskListService.setTaskList(tasklist);
+        }
+    }
 }

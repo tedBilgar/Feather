@@ -53,4 +53,11 @@ public class TableControllerRest {
     public Set<TaskList> getAllTaskListsOfTable(@PathVariable("id")int id){
         return tableService.getAllTaskListOfTable(id);
     }
+
+    @RequestMapping(value = "/merge",method = RequestMethod.GET)
+    @ResponseBody
+    public String mergeTables(@RequestParam("from")int fromID,@RequestParam("to")int toID){
+        tableService.mergeTables(fromID, toID);
+        return "Nice";
+    }
 }

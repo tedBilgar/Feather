@@ -51,4 +51,10 @@ public class TaskListControllerRest {
         if (!taskListService.deleteRelationBetweenTasks(parentID,taskID)) return "Error";
         return "Nice";
     }
+
+    @RequestMapping(value = "/merge",method = RequestMethod.GET)
+    public String mergeTasks(@RequestParam("from")int fromID,@RequestParam("to")int toID){
+        taskListService.changeTaskList(fromID, toID);
+        return "Nice";
+    }
 }

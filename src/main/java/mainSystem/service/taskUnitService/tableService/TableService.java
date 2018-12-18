@@ -19,4 +19,5 @@ public interface TableService {
     TaskList addTaskList(TaskList taskList, int tableID);
     TaskList getTaskList(int taskListID);
     Set<TaskList> getAllTaskListOfTable(int tableID);
+    void mergeTables(int old_tableID,int new_tableID);
  }

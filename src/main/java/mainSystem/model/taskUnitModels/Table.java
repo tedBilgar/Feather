@@ -32,7 +32,7 @@ public class Table {
     @JsonIgnore
     private Set<User> userSet = new HashSet<User>();
 
-    @OneToMany(mappedBy = "taskTable")
+    @OneToMany(mappedBy = "taskTable", fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<TaskList> taskLists = new HashSet<TaskList>();
 

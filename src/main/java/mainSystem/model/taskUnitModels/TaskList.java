@@ -30,7 +30,7 @@ public class TaskList {
     @JsonIgnore
     private mainSystem.model.taskUnitModels.Table taskTable;
 
-    @OneToMany(mappedBy = "taskList")
+    @OneToMany(mappedBy = "taskList",fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<Task> tasks = new HashSet<Task>();
 

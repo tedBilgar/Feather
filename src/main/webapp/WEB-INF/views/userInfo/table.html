@@ -4,6 +4,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Table Info</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <style type="text/css">
+        #mynetwork {
+            width: 600px;
+            height: 400px;
+            border: 1px solid lightgray;
+        }
+    </style>
 
 </head>
 
@@ -19,6 +28,7 @@
 
         <button type="submit">Create</button>
     </form>
+
     <table >
         <tr>
             <th>Task List name</th>
@@ -27,6 +37,65 @@
             <td><a th:href="@{/tasklist/__${tasklist.id}__}" th:text="${tasklist.name}"></a></td>
         </tr>
     </table>
+
+    <h2>Merge tasks</h2>
+    <form th:action="@{/rest/tasklist/merge}" method="get">
+
+        <span>From</span>
+        <select th:name="from">
+            <option th:each="taskList : ${taskLists}"
+                    th:value="${taskList.id}"
+                    th:text="${taskList.name}"></option>
+        </select>
+
+        <span>To</span>
+        <select th:name="to">
+            <option th:each="taskList : ${taskLists}"
+                    th:value="${taskList.id}"
+                    th:text="${taskList.name}"></option>
+        </select>
+        <button type="submit">Merge</button>
+    </form>
+
 </div>
+
+
+<h2>
+    Graphical representation of Table
+</h2>
+
+<div id="mynetwork"></div>
+
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+
+    var message = /*[[${taskLists}]]*/ 'default';
+
+    /*]]>*/
+    var array = [];
+    message.forEach(function (taskList) {
+        array.push({id:taskList.id, label: taskList.name});
+
+    });
+    // create an array with nodes
+    var nodes = new vis.DataSet(array);
+
+    var array2 = [];
+    message.forEach(function (task) {
+
+    });
+    // create an array with edges
+    var edges = new vis.DataSet(array2);
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {};
+    var network = new vis.Network(container, data, options);
+</script>
+
 </body>
 </html>
