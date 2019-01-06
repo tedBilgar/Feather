@@ -28,7 +28,7 @@ public class InformationUserController {
         modelAndView.addObject("user",user);
         modelAndView.addObject("table",new Table());
         modelAndView.addObject("userTables",userService.getUserById(user.getId()).getTables());
-        modelAndView.setViewName("userInfo/userInfo");
+        modelAndView.setViewName("userInfo/dashboard");
         return modelAndView;
     }
 }
